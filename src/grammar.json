@@ -2231,8 +2231,15 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[^'~$\\\\\\n]+"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "PATTERN",
+              "value": "[^'~$\\\\\\n]+"
+            }
+          }
         },
         {
           "type": "STRING",
@@ -2273,8 +2280,15 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[^\"~$\\\\\\n]+"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\"~$\\\\\\n]+"
+            }
+          }
         },
         {
           "type": "STRING",
@@ -2387,8 +2401,15 @@
           {
             "type": "ALIAS",
             "content": {
-              "type": "PATTERN",
-              "value": "[^'\\\\\\n]+"
+              "type": "TOKEN",
+              "content": {
+                "type": "PREC",
+                "value": 1,
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[^'\\\\\\n]+"
+                }
+              }
             },
             "named": true,
             "value": "content"
@@ -2408,8 +2429,15 @@
           {
             "type": "ALIAS",
             "content": {
-              "type": "PATTERN",
-              "value": "[^\"\\\\\\n]+"
+              "type": "TOKEN",
+              "content": {
+                "type": "PREC",
+                "value": 1,
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[^\"\\\\\\n]+"
+                }
+              }
             },
             "named": true,
             "value": "content"

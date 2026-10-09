@@ -1,0 +1,71 @@
+==========================================
+A hash at the start of string content is not a comment
+==========================================
+
+version 1.0
+
+task Hash {
+    input {
+        String x
+        Boolean b
+    }
+    String a = "#"
+    String c = '#x'
+    String d = "v~{x}#tag"
+    command <<<
+        echo ~{true="" false="#" b} # trailing comment
+    >>>
+}
+
+---
+
+(document
+  (version
+    (float))
+  (document_body
+    (task
+      (identifier)
+      (task_elements
+        (input
+          (input_declarations
+            (unbound_declaration
+              (string_type)
+              (identifier))
+            (unbound_declaration
+              (boolean_type)
+              (identifier))))
+        (bound_declaration
+          (string_type)
+          (identifier)
+          (string
+            (string_parts
+              (content))))
+        (bound_declaration
+          (string_type)
+          (identifier)
+          (string
+            (string_parts
+              (content))))
+        (bound_declaration
+          (string_type)
+          (identifier)
+          (string
+            (string_parts
+              (content)
+              (placeholder
+                (identifier))
+              (content))))
+        (command
+          (command_parts
+            (content)
+            (placeholder
+              (placeholder_option
+                (option_key)
+                (simple_string))
+              (placeholder_option
+                (option_key)
+                (simple_string
+                  (string_parts
+                    (content))))
+              (identifier))
+            (content)))))))
