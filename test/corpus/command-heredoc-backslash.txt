@@ -1,0 +1,50 @@
+==========================================
+A backslash directly after a placeholder in a heredoc command
+==========================================
+
+version 1.0
+
+task Heredoc {
+    input {
+        String x
+    }
+    command <<<
+        echo ~{x}\n~{x}\t
+        echo "\"~{x}\"" \~ \\ \>>> \}
+    >>>
+}
+
+---
+
+(document
+  (version
+    (float))
+  (document_body
+    (task
+      (identifier)
+      (task_elements
+        (input
+          (input_declarations
+            (unbound_declaration
+              (string_type)
+              (identifier))))
+        (command
+          (command_parts
+            (content)
+            (placeholder
+              (identifier))
+            (content)
+            (placeholder
+              (identifier))
+            (content)
+            (placeholder
+              (identifier))
+            (content)
+            (escape_sequence)
+            (content)
+            (escape_sequence)
+            (content)
+            (escape_sequence)
+            (content)
+            (escape_sequence)
+            (content)))))))
