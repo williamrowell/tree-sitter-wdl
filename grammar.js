@@ -679,6 +679,9 @@ module.exports = grammar({
 
         _dollar_placeholder: $ => seq(
             SYMBOL.dollar_placeholder,
+            repeat(
+                field("option", $.placeholder_option)
+            ),
             field("expression", $._expression),
             SYMBOL.rbrace
         ),
