@@ -652,6 +652,7 @@ module.exports = grammar({
                 KEYWORD.true,
                 KEYWORD.false
             )),
+            /[ \t]*/,
             OPER.assign,
         )),
 
