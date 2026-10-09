@@ -1,0 +1,44 @@
+==========================================
+Backslashes in brace-style commands
+==========================================
+
+version 1.0
+
+task Brace {
+    input {
+        String x
+    }
+    command {
+        echo a\nb ~{x}\t
+        cut -d$'\t' -f1 file | sed 's/a\/b//'
+        echo a \
+            b \\ c \} d
+    }
+}
+
+---
+
+(document
+  (version
+    (float))
+  (document_body
+    (task
+      (identifier)
+      (task_elements
+        (input
+          (input_declarations
+            (unbound_declaration
+              (string_type)
+              (identifier))))
+        (command
+          (command_parts
+            (content)
+            (placeholder
+              (identifier))
+            (content)
+            (content)
+            (content)
+            (escape_sequence)
+            (content)
+            (escape_sequence)
+            (content)))))))

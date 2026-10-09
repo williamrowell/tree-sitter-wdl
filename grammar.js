@@ -314,7 +314,7 @@ module.exports = grammar({
         ),
 
         command_brace_content: $ => choice(
-            /([^~$}\\]|\\\n)+/,
+            /([^~$}\\]|\\[^>}~$\\])+/,
             "~",
             "$"
         ),
