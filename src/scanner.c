@@ -68,20 +68,27 @@ bool tree_sitter_wdl_external_scanner_scan(
                 {
                     has_content = true;
                 }
-                else if (has_content)
+                else if (lexer->lookahead == TILDE
+                         || lexer->lookahead == RBRACE
+                         || lexer->lookahead == HEREDOC_END
+                         || lexer->lookahead == ESCAPE)
                 {
-                    // Check for escapable WDL things, \~ \} \> or double backslash \\.
-                    if (lexer->lookahead == TILDE 
-                        || lexer->lookahead == RBRACE 
-                        || lexer->lookahead == HEREDOC_END 
-                        || lexer->lookahead == ESCAPE)
+                    // An escapable WDL thing, \~ \} \> or double backslash \\. End any content
+                    // before it; with no content before it, leave it to the escape_sequence token.
+                    if (has_content)
                     {
                         lexer->result_symbol = COMMAND_CONTENT;
                         return true;
-                    }                
+                    }
+                    else
+                        return false;
                 }
                 else
-                    return false;
+                {
+                    // Any other backslash (\n, \t, \. ...) is ordinary shell text. This holds even when
+                    // no content precedes it, e.g. directly after a placeholder in `~{x}\n`.
+                    has_content = true;
+                }
             }
             else if (lexer->lookahead == HEREDOC_END)
             {
