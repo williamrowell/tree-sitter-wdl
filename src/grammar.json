@@ -2537,6 +2537,17 @@
           "value": "${"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "FIELD",
+            "name": "option",
+            "content": {
+              "type": "SYMBOL",
+              "name": "placeholder_option"
+            }
+          }
+        },
+        {
           "type": "FIELD",
           "name": "expression",
           "content": {
