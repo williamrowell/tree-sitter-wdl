@@ -1,0 +1,67 @@
+==========================================
+Placeholder options allow spaces around =
+==========================================
+
+version 1.0
+
+task Options {
+    input {
+        Array[String] xs
+        Boolean b
+    }
+    command <<<
+        echo ~{sep = " " xs} ~{true="--a" false ="" b} ~{true = "--c" false = "" b}
+    >>>
+}
+
+---
+
+(document
+  (version
+    (float))
+  (document_body
+    (task
+      (identifier)
+      (task_elements
+        (input
+          (input_declarations
+            (unbound_declaration
+              (array_type
+                (string_type))
+              (identifier))
+            (unbound_declaration
+              (boolean_type)
+              (identifier))))
+        (command
+          (command_parts
+            (content)
+            (placeholder
+              (placeholder_option
+                (option_key)
+                (simple_string
+                  (string_parts
+                    (content))))
+              (identifier))
+            (content)
+            (placeholder
+              (placeholder_option
+                (option_key)
+                (simple_string
+                  (string_parts
+                    (content))))
+              (placeholder_option
+                (option_key)
+                (simple_string))
+              (identifier))
+            (content)
+            (placeholder
+              (placeholder_option
+                (option_key)
+                (simple_string
+                  (string_parts
+                    (content))))
+              (placeholder_option
+                (option_key)
+                (simple_string))
+              (identifier))
+            (content)))))))
